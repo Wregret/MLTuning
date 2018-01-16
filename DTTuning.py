@@ -13,7 +13,7 @@ for sp in numpy.arange(1,10,1):
     dtf1 = []
     dt = DecisionTreeClassifier(criterion='entropy', min_samples_leaf=sp)
     for i in range(len(data)) :
-        dtscore = cross_val_score(dt, data[i], target[i], cv=5, scoring='f1_weighted', n_jobs=3)
+        dtscore = cross_val_score(dt, data[i], target[i], cv=10, scoring='f1_weighted', n_jobs=3)
         dtf1.append(dtscore.mean())
     print dtf1
     for i in range(0, 9):

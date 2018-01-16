@@ -8,12 +8,12 @@ from Preprocessing import prepareDataset
 data, target = prepareDataset()
 nnresult = []
 
-for t in numpy.arange(100, 300, 2):
+for t in numpy.arange(50, 200, 2):
     nnavgscore = 0
     nnf1 = []
     nn = MLPClassifier(solver='adam', learning_rate='adaptive', learning_rate_init=0.03, max_iter=t)
     for i in range(len(data)) :
-        nnscore = cross_val_score(nn, data[i], target[i], cv=5, scoring='f1_weighted', n_jobs=3)
+        nnscore = cross_val_score(nn, data[i], target[i], cv=10, scoring='f1_weighted', n_jobs=3)
         nnf1.append(nnscore.mean())
     print nnf1
     for i in range(0, 9):
@@ -22,7 +22,7 @@ for t in numpy.arange(100, 300, 2):
     nnresult.append(nnavgscore)
 
 print nnresult
-plt.plot(numpy.arange(100, 300, 2), nnresult)
+plt.plot(numpy.arange(50, 200, 2), nnresult)
 plt.xlabel("Learning rate init")
 plt.ylabel("f1 score")
 plt.show()
